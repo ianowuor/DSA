@@ -5,17 +5,23 @@
 */
 
 class Queue {
-    constructor () {
+    constructor (maxSize) {
         this.queue = [];
         this.rear = 0;
         this.front = 0;
         this.count = 0;
+        this.maxSize = maxSize;
     }
 
     enqueue (element) {
-        this.queue[this.rear] = element;
-        this.rear += 1;
-        this.count += 1;
+        if (!this.isFull()) {
+            this.queue[this.rear] = element;
+            this.rear += 1;
+            this.count += 1;
+            return `${element} added to queue`;
+        } else {
+            return 'Stack Full';
+        }
     }
 
     dequeue () {
@@ -33,9 +39,24 @@ class Queue {
         return this.count == 0 ? true : false;
     }
 
+    isFull () {
+        return this.count == this.maxSize ? true : false;
+    }
+
+    print () {
+        let output = [];
+        let index = 0;
+        for (let i = this.front; i <= this.rear - 1; i++) {
+            output[index] = this.queue[i];
+            index += 1;
+        }
+
+        console.log(output);
+    }
+
 }
 
-let numbers = new Queue();
+let numbers = new Queue(5);
 
 numbers.enqueue(10);
 numbers.enqueue(20);
@@ -51,5 +72,14 @@ numbers.enqueue(30);
 console.log(numbers.queue);
 console.log('Count: ' + numbers.count);
 console.log(numbers.dequeue());
+numbers.enqueue(21);
+numbers.enqueue(22);
+numbers.enqueue(23);
+numbers.enqueue(24);
+console.log(numbers.enqueue(25));
+console.log(numbers.enqueue(26));
+console.log(numbers.enqueue(27));
+
+numbers.print();
 
 
