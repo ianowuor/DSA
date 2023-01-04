@@ -54,6 +54,10 @@ class Queue {
         console.log(output);
     }
 
+    reset () {
+        this.queue = [];
+    }
+
 }
 
 let numbers = new Queue(5);
