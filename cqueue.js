@@ -5,44 +5,25 @@
 
 */
 
-class circularQueue {
+class CircularQueue {
     constructor (maxSize) {
         this.queue = [];
         this.maxSize = maxSize;
-        this.front = 0;
-        this.rear = 0;
+        this.front = -1;
+        this.rear = -1;
         this.count = 0;
     }
 
-    isEmpty () {
-        return this.count == 0 ? true : false;
-    }
-
-    isFull () {
-        return this.count == this.maxSize ? true : false;
-    }
-
-    enqueue (element) {
+    enqueue (data) {
         if (this.isFull()) {
-            return 'Stack Full';
-        } 
-
-        if ((this.rear == this.maxSize) && this.front > 0) {
-            let availableIndices = [];
-            for (let i = 0; i < this.front; i++) {
-                availableIndices.push(i);
-            }
-
-            this.queue[availableIndices[availableIndices.length - 1]] = element;
-            this.front -= 1;
-            this.count += 1;
-            return `${element} added to cqueue`
+            return 'Queue Full';
         }
 
-        this.queue[this.rear] = element;
+        let nextIndex = (this.rear + 1) % this.maxSize;
+        this.queue[nextIndex] = data;
         this.rear += 1;
         this.count += 1;
-        return `${element} added to queue`;
+        return `${data} added`;
     }
 
     dequeue () {
@@ -50,30 +31,45 @@ class circularQueue {
             return undefined;
         }
 
-        let deletedElement = this.queue[this.front];
+        let data = this.queue[(this.front + 1) % this.maxSize];
         this.front += 1;
         this.count -= 1;
-        return deletedElement;
+        this.queue[this.front] = null;
+        return `${data} removed from queue`;
     }
+
+    isFull () {
+        return this.count == this.maxSize ? true : false;
+    }
+
+    isEmpty () {
+        return this.count == 0 ? true : false;
+    }
+
 }
 
-let numbers = new circularQueue(5);
+let numbers = new CircularQueue(5);
 
-for (let i = 1; i <= 5; i++) {
-    numbers.enqueue(i * 10);
+for (let i = 1; i < 6; i++) {
+    console.log(numbers.enqueue(i * 10));
 }
 
 console.log(numbers.queue);
 
-for (let i = 1; i > -1; i--) {
-    console.log(`${numbers.dequeue()} removed from queue`);
+for (let i = 0; i <= 1; i++) {
+    console.log(numbers.dequeue());
 }
 
-console.log(numbers.enqueue(60));
-console.log(numbers.enqueue(70));
+console.log(numbers.queue);
+
+numbers.enqueue(60);
+
+console.log(numbers.queue);
+
+numbers.enqueue(70);
+
 console.log(numbers.enqueue(80));
 
 console.log(numbers.queue);
-
 
 
