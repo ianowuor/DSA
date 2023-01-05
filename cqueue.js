@@ -46,6 +46,13 @@ class CircularQueue {
         return this.count == 0 ? true : false;
     }
 
+    peek () {
+        return this.queue[(this.front + 1) % this.maxSize];
+    }
+
+    reset () {
+        this.queue = [];
+    }
 }
 
 let numbers = new CircularQueue(5);
