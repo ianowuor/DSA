@@ -54,6 +54,18 @@ class DoublylinkedList {
         return dataElements;
     }
 
+    // Treaverse a linke list -> Reverse
+    reverse () {
+        let dataElements = [];
+        let node = this.rear;
+        while (node) {
+            dataElements.push(node.data);
+            node = node.prev;
+        }
+
+        return dataElements;
+    }
+
 
 }
 
@@ -77,5 +89,6 @@ numbers.addNode(50);
 
 numbers.printList();
 console.log(numbers.traverse());
+console.log(numbers.reverse());
 
 
