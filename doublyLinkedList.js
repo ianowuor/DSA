@@ -66,7 +66,13 @@ class DoublylinkedList {
         return dataElements;
     }
 
-
+    // Add Node before the head node
+    replaceHeadNode (data) {
+        let headNode = this.head;
+        this.head = new Node(data);
+        this.head.next = headNode;
+        headNode.prev = this.head;
+    }
 }
 
 // Node Class Definition 
@@ -75,6 +81,14 @@ class Node {
         this.data = data;
         this.prev = null;
         this.next = null;
+    }
+
+    // Add node after this node instance
+    addNodeAfter (data) {
+        let nextNode = this.next;
+        this.next = new Node(data);
+        this.next.prev = this;
+        this.next.next = nextNode;
     }
 }
 
@@ -88,6 +102,19 @@ numbers.addNode(40);
 numbers.addNode(50);
 
 numbers.printList();
+numbers.replaceHeadNode(5);
+
+let node = numbers.head;
+
+while (node) {
+    if (node.data == 20) {
+        node.addNodeAfter(25);
+        break;
+    }
+
+    node = node.next;
+}
+
 console.log(numbers.traverse());
 console.log(numbers.reverse());
 
