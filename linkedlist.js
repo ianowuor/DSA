@@ -64,6 +64,27 @@ class LinkedList {
         }
     }
 
+    // Delete node where data == key
+    deleteNode (key) {
+        let prevNode = this.head;
+        let nextNode = prevNode.next;
+
+        if (prevNode == key) {
+            this.head = nextNode;
+            return;
+        }
+
+        while (nextNode) {
+            if (nextNode.data == key) {
+                prevNode.next = nextNode.next;
+                return;
+            } 
+
+            prevNode = nextNode;
+            nextNode = nextNode.next;
+        }
+    }
+
 }
 
 class Node {
@@ -110,5 +131,6 @@ linkedlist.append(50);
 linkedlist.deleteHead();
 linkedlist.deleteEnd();
 console.log(`${fourth.deleteNext()} deletd`);
+linkedlist.deleteNode(20);
 
 linkedlist.printList();
