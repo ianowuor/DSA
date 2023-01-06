@@ -89,6 +89,16 @@ class Node {
         this.next = new Node(data);
         this.next.prev = this;
         this.next.next = nextNode;
+        nextNode.prev = this.next;
+    }
+
+    // Add node before this node instance
+    addNodeBefore (data) {
+        let prevNode = this.prev;
+        this.prev = new Node(data);
+        this.prev.prev = prevNode;
+        this.prev.next = this;
+        prevNode.next = this.prev;
     }
 }
 
@@ -114,6 +124,16 @@ while (node) {
 
     node = node.next;
 }
+
+node = numbers.rear;
+ while (node) {
+    if (node.data == 40) {
+        node.addNodeBefore(35);
+        break;
+    }
+
+    node = node.prev;
+ }
 
 console.log(numbers.traverse());
 console.log(numbers.reverse());
