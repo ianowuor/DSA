@@ -123,6 +123,14 @@ class Node {
         this.next = this.next.prev;
         this.next.prev = this;
     }
+
+    // Add node before this node instance
+    addNodeBefore (data) {
+        this.prev.next = new Node(data);
+        this.prev.next.prev = this.prev;
+        this.prev.next.next = this;
+        this.prev = this.prev.next;
+    }
 }
 
 let numbers = new DoublyCircularLinkedList(10);
@@ -137,6 +145,7 @@ let current = numbers.head;
 while (current) {
     if (current.data == 40) {
         current.addNodeAfter(45);
+        current.addNodeBefore(35);
         break;
     }
 
