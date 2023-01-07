@@ -23,9 +23,6 @@ class DoublylinkedList {
             this.rear.prev = this.head;
             this.head.next = this.rear;
         } else {
-            // let prev = this.rear;
-            // this.rear = new Node (data);
-            // this.rear.prev = prev;
             let prev = this.rear;
             prev.next = new Node (data);
             prev.next.prev = prev;
