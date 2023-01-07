@@ -110,6 +110,13 @@ class CircularLinkedList {
 
         return reversedList;
     }
+
+    // Add Node before the head node
+    replaceHeadNode (data) {
+        this.end.next = new Node(data);
+        this.end.next.next = this.head;
+        this.head = this.end.next;
+    }
 }
 
 class Node {
@@ -124,6 +131,7 @@ numbers.append(20);
 numbers.append(30);
 numbers.append(40);
 numbers.append(50);
+numbers.replaceHeadNode(5);
 
 console.log(numbers.traverse());
 console.log(numbers.reverse());
