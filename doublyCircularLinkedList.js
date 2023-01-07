@@ -71,6 +71,42 @@ class DoublyCircularLinkedList {
 
         return null;
     }
+
+    // Traverse linked list
+    traverse () {
+        let current = this.head;
+        let dataElements = [];
+        while (current) {
+            dataElements.push(current.data);
+            if (current.next == this.head) {
+                break;
+            }
+
+            current = current.next;
+        }
+
+        return dataElements;
+    }
+
+    // Return data elements in all nodes in reverse order
+    reverse () {
+        let dataElements = this.traverse();
+        let reversedList = [];
+
+        for (let i = dataElements.length - 1; i >= 0; i--) {
+            reversedList.push(dataElements[i]);
+        }
+
+        return reversedList;
+    }
+
+    // Add node before the head node
+    replaceHeadNode (data) {
+        this.end.next = new Node(data);
+        this.head.prev = this.end.next;
+        this.end.next.next = this.head;
+        this.head = this.end.next;
+    }
 }
 
 class Node {
@@ -86,6 +122,10 @@ numbers.append(20);
 numbers.append(30);
 numbers.append(40);
 numbers.append(50);
+numbers.replaceHeadNode(5);
+
+console.log(numbers.traverse());
+console.log(numbers.reverse());
 numbers.deleteHead();
 numbers.deleteEnd();
 numbers.deleteNode(40);
