@@ -89,6 +89,34 @@ class DoublylinkedList {
         this.rear.next = null;
         return data;
     }
+
+    // Delete node with a specific key
+    deleteNode (key) {
+        let data = null;
+        if (this.head.data == key) {
+            data = this.deleteHead();
+            return data;
+        }
+
+        if (this.rear.data == key) {
+            data = this.deleteRear();
+            return data;
+        }
+
+        let node = this.head.next;
+        while (node) {
+            if (node.data == key) {
+                data = node.data;
+                node.prev.next = node.next;
+                node.next.prev = node.prev;
+                break;
+            }
+
+            node = node.next;
+        }
+
+        return data;
+    }
 }
 
 // Node Class Definition 
@@ -153,6 +181,7 @@ node = numbers.rear;
 
  console.log(numbers.deleteHead());
  console.log(numbers.deleteRear());
+ console.log(numbers.deleteNode(25));
 
 console.log(numbers.traverse());
 console.log(numbers.reverse());
