@@ -115,6 +115,14 @@ class Node {
         this.next = null;
         this.prev = null;
     }
+
+    // Add node after this node instance
+    addNodeAfter (data) {
+        this.next.prev = new Node(data);
+        this.next.prev.next = this.next;
+        this.next = this.next.prev;
+        this.next.prev = this;
+    }
 }
 
 let numbers = new DoublyCircularLinkedList(10);
@@ -123,6 +131,17 @@ numbers.append(30);
 numbers.append(40);
 numbers.append(50);
 numbers.replaceHeadNode(5);
+
+let current = numbers.head;
+
+while (current) {
+    if (current.data == 40) {
+        current.addNodeAfter(45);
+        break;
+    }
+
+    current = current.next;
+}
 
 console.log(numbers.traverse());
 console.log(numbers.reverse());
