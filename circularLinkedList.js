@@ -63,6 +63,26 @@ class CircularLinkedList {
 
         return data;
     }
+
+    // Delete node with specified key
+    deleteNode (key) {
+        let data = null;
+        if (this.head.data == key) {
+            data = this.deleteHead();
+            return data;
+        }
+
+        let current = this.head;
+        while (current) {
+            if (current.next.data == key) {
+                data = current.data;
+                current.next = current.next.next;
+                break;
+            }
+
+            current = current.next;
+        }
+    }
 }
 
 class Node {
@@ -86,5 +106,8 @@ for (let i = 0; i <= 10; i++) {
 
 numbers.deleteHead();
 numbers.deleteEnd();
+numbers.deleteNode(30);
+numbers.deleteNode(40);
+
 console.log("Displaying Numbers");
 numbers.display();
