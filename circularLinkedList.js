@@ -124,6 +124,13 @@ class Node {
         this.data = data;
         this.next = null;
     }
+
+    // Add node after this node instance
+    addNodeAfter (data) {
+        let nextNode = this.next;
+        this.next = new Node(data);
+        this.next = nextNode;
+    }
 }
 
 let numbers = new CircularLinkedList(10);
