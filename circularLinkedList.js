@@ -36,6 +36,13 @@ class CircularLinkedList {
             }
         }
     }
+
+    deleteHead () {
+        let data = this.head.data;
+        this.head = this.head.next;
+        this.end.next = this.head;
+        return data;
+    }
 }
 
 class Node {
@@ -56,5 +63,7 @@ for (let i = 0; i <= 10; i++) {
     console.log(node.data);
     node = node.next;
 }
+
+numbers.deleteHead();
 console.log("Displaying Numbers");
 numbers.display();
