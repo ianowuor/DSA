@@ -99,6 +99,17 @@ class CircularLinkedList {
 
         return dataElements;
     }
+
+    // Return data elements in all nodes in reverse order
+    reverse () {
+        let dataElements = this.traverse();
+        let reversedList = [];
+        for (let i = dataElements.length - 1; i >= 0; i--) {
+            reversedList.push(dataElements[i]);
+        }
+
+        return reversedList;
+    }
 }
 
 class Node {
@@ -115,6 +126,7 @@ numbers.append(40);
 numbers.append(50);
 
 console.log(numbers.traverse());
+console.log(numbers.reverse());
 
 let node = numbers.head;
 for (let i = 0; i <= 10; i++) {
