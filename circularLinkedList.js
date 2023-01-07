@@ -83,6 +83,22 @@ class CircularLinkedList {
             current = current.next;
         }
     }
+
+    // Traverse Linked List 
+    traverse () {
+        let dataElements = [];
+        let current = this.head;
+        while (current) {
+            dataElements.push(current.data);
+            if (current == this.end) {
+                break;
+            }
+
+            current = current.next;
+        }
+
+        return dataElements;
+    }
 }
 
 class Node {
@@ -97,6 +113,8 @@ numbers.append(20);
 numbers.append(30);
 numbers.append(40);
 numbers.append(50);
+
+console.log(numbers.traverse());
 
 let node = numbers.head;
 for (let i = 0; i <= 10; i++) {
