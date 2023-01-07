@@ -50,6 +50,27 @@ class DoublyCircularLinkedList {
         this.end = this.end.prev;
         this.end.next = this.head;
     }
+
+    // Delete Node with specified key
+    deleteNode (key) {
+        if (this.head.data == key) {
+            this.deleteHead();
+            return key;
+        }
+
+        let current = this.head.next;
+        while (current) {
+            if (current.data == key) {
+                current.prev.next = current.next;
+                current.next.prev = current.prev;
+                return key;
+            }
+
+            current = current.next;
+        }
+
+        return null;
+    }
 }
 
 class Node {
@@ -67,6 +88,7 @@ numbers.append(40);
 numbers.append(50);
 numbers.deleteHead();
 numbers.deleteEnd();
+numbers.deleteNode(40);
 
 numbers.display();
  
