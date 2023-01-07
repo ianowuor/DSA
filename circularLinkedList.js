@@ -13,7 +13,7 @@ class CircularLinkedList {
     }
 
     // Add Node at the end of the Linked list
-    addNode (data) {
+    append (data) {
         if (this.head.next == null) {
             this.end = new Node(data);
             this.head.next = this.end;
@@ -22,6 +22,18 @@ class CircularLinkedList {
             this.end.next = new Node(data);
             this.end = this.end.next;
             this.end.next = this.head;
+        }
+    }
+
+    // Function to print the content of circular linked list
+    display () {
+        let current = this.head;
+        while (current) {
+            console.log(current.data);
+            current = current.next;
+            if (current == this.head) {
+                break;
+            }
         }
     }
 }
@@ -34,13 +46,15 @@ class Node {
 }
 
 let numbers = new CircularLinkedList(10);
-numbers.addNode(20);
-numbers.addNode(30);
-numbers.addNode(40);
-numbers.addNode(50);
+numbers.append(20);
+numbers.append(30);
+numbers.append(40);
+numbers.append(50);
 
 let node = numbers.head;
 for (let i = 0; i <= 10; i++) {
     console.log(node.data);
     node = node.next;
 }
+console.log("Displaying Numbers");
+numbers.display();
