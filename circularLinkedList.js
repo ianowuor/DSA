@@ -8,21 +8,16 @@
 class CircularLinkedList {
     constructor (data) {
         this.head = new Node(data);
-        this.end = null;
+        this.end = this.head;
         this.head.next = this.end;
+        this.end.next = this.head;
     }
 
     // Add Node at the end of the Linked list
     append (data) {
-        if (this.head.next == null) {
-            this.end = new Node(data);
-            this.head.next = this.end;
-            this.end.next = this.head;
-        } else {
-            this.end.next = new Node(data);
-            this.end = this.end.next;
-            this.end.next = this.head;
-        }
+        this.end.next = new Node(data);
+        this.end = this.end.next;
+        this.end.next = this.head;
     }
 
     // Function to print the content of circular linked list
@@ -37,10 +32,35 @@ class CircularLinkedList {
         }
     }
 
+    // Function to delete head node of linked list 
     deleteHead () {
         let data = this.head.data;
         this.head = this.head.next;
         this.end.next = this.head;
+        return data;
+    }
+
+    // Function to delete end node of linked list
+    deleteEnd () {
+        let data = null;
+        if (this.head.next == this.head) {
+            data = this.deleteHead();
+            return data;
+        }
+
+        data = this.end.data;
+        let current = this.head;
+        while (current) {
+            if (current.next == this.end) {
+                // current.next = this.head;
+                this.end = current;
+                this.end.next = this.head; 
+                break;   
+            }
+
+            current = current.next;
+        }
+
         return data;
     }
 }
@@ -65,5 +85,6 @@ for (let i = 0; i <= 10; i++) {
 }
 
 numbers.deleteHead();
+numbers.deleteEnd();
 console.log("Displaying Numbers");
 numbers.display();
