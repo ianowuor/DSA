@@ -73,6 +73,14 @@ class DoublylinkedList {
         this.head.next = headNode;
         headNode.prev = this.head;
     }
+
+    // Delete head Node
+    deleteHead () {
+        let data = this.head.data;
+        this.head = this.head.next;
+        this.head.prev = null;
+        return data;
+    }
 }
 
 // Node Class Definition 
@@ -134,6 +142,8 @@ node = numbers.rear;
 
     node = node.prev;
  }
+
+ console.log(numbers.deleteHead());
 
 console.log(numbers.traverse());
 console.log(numbers.reverse());
