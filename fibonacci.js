@@ -46,6 +46,19 @@ function f(n) {
     }
 }
 
-console.log("Finding The nth Fibonacci Number Using Recursion")
+console.log("Finding The nth Fibonacci Number Using Recursion");
 printNumbers(f(19));
 
+// Arrays
+
+let numbers = [62, 81, 43, 72, 90, 54, 25, 22, 36];
+let minNum = numbers[0];
+
+for (let i = 1; i < numbers.length; i++) {
+    if (numbers[i] < minNum) {
+        minNum = numbers[i];
+    }
+}
+
+console.log("Min value in array");
+console.log(minNum);
