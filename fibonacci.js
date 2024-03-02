@@ -34,3 +34,18 @@ console.log("Fibonacci using Recursion")
 printNumbers(0);
 printNumbers(1);
 fibonacci(1, 0);
+
+// Finding The nth Fibonacci Number Using Recursion
+// f(n) = f(n - 1) + f(n - 2)
+
+function f(n) {
+    if (n <= 1) {
+        return n;
+    } else {
+        return f(n - 1) + f(n - 2);
+    }
+}
+
+console.log("Finding The nth Fibonacci Number Using Recursion")
+printNumbers(f(19));
+
